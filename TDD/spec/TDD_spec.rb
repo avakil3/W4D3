@@ -55,3 +55,101 @@ describe "#stock_picker" do
   end
 
 end
+
+
+describe TowersOfHanoi do   
+  subject(:game) { TowersOfHanoi.new(4) }
+
+  describe '#initialize' do 
+    it 'should create 1 2D array, containing 3 arrays' do
+      expect(game.stacks).to eq([ [],[],[] ])
+    end
+    
+    it 'should have a total of n discs across all stacks' do 
+      expect(game.stacks.inject(0) {|acc, el| acc += el.length}.to eq(n) # 4? 
+    end
+    
+  end
+
+
+  describe '#get_move' do 
+    before do 
+      input = double
+      expect(:game)
+        .to_receive(:gets)
+        .and_return(input)
+        .twice
+      expect(input)
+        .to_receive(:chomp)
+        .and_return(:stack_from)
+      expect(input)
+    
+    
+    
+    it 'should get user\'s input to select from stack' do
+      expect(subject)
+        .to receive(:gets)
+        .and_return  
+      #expect_any_instance_of(Array).not_to receive(:transpose)
+    end
+    
+    
+    # stack_from gets (top_piece)
+    #   disc_value = top_piece
+    # stack_to gets
+
+  end
+  # In a loop, 
+  # gets: ask what pile to select a disc from
+  # gets: ask where to put it.
+
+
+  # get piece from stack (piece, from)
+  # get new stack (to)
+  
+  
+  
+  
+  
+  describe '#move_disc' do
+    it 'should only move one disc at a time' do
+
+    end
+    
+    it 'should only place a disc on a disc that is smaller than it' do 
+      expect(game.stacks
+    end
+  end
+
+
+
+
+
+# check #move
+#   - Only one disk may be moved at a time.
+#   - Each move consists of taking the upper disk from 
+#     one of the stacks and placing it on top of another 
+#     stack or on an empty rod.
+#   - No disk may be placed on top of a disk that is 
+#     smaller than it.
+
+end
+
+# arr1 = []
+# arr2 = [4, 1]
+# arr3 = [3, 2]
+
+
+# Keep three arrays, which represent the piles of discs. 
+#   - 4 or more discs
+# representation of the discs to store in the arrays
+
+# In a loop, 
+# gets: ask what pile to select a disc from
+# gets: ask where to put it.
+
+
+
+# check #won? after each move
+#   - 2 empty?, 1 sorted.reverse 
+
