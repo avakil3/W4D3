@@ -66,39 +66,21 @@ describe TowersOfHanoi do
     end
     
     it 'should have a total of n discs across all stacks' do 
-      expect(game.stacks.inject(0) {|acc, el| acc += el.length}.to eq(n) # 4? 
+      expect(game.stacks.inject(0) {|acc, el| acc += el.length}).to eq(4)  
     end
     
   end
 
 
-  describe '#get_move' do 
-    before do 
-      input = double
-      expect(:game)
-        .to_receive(:gets)
-        .and_return(input)
-        .twice
-      expect(input)
-        .to_receive(:chomp)
-        .and_return(:stack_from)
-      expect(input)
-    
-    
-    
-    it 'should get user\'s input to select from stack' do
-      expect(subject)
-        .to receive(:gets)
-        .and_return  
-      #expect_any_instance_of(Array).not_to receive(:transpose)
-    end
-    
+ 
     
     # stack_from gets (top_piece)
     #   disc_value = top_piece
     # stack_to gets
 
-  end
+
+
+
   # In a loop, 
   # gets: ask what pile to select a disc from
   # gets: ask where to put it.
@@ -112,16 +94,45 @@ describe TowersOfHanoi do
   
   
   describe '#move_disc' do
-    it 'should only move one disc at a time' do
+ 
 
+    before(:each) do
+      #dont need to recreate stacks... just call game.stacks
+      let(:stack_from) { 0 }
+      let(:stacks[stack_from]) { [1,3] }
+      let(:disc) {  stacks[stack_from].last }
+
+      let(:stack_to) {1}
+      let(:stacks[stack_to]) { [4] }
+  end
+
+  
+    it "should select the top disc from the index @stack_from" do
+        expect(disc).to eq(stacks[stack_from].last)
     end
+
     
-    it 'should only place a disc on a disc that is smaller than it' do 
-      expect(game.stacks
+    it 'should only place a disc on index @stack_to if the disc is smaller than the top disc ' do 
+      expect(disc).to be < (stacks[stack_to].last) 
     end
+
+    it "should call #won? method at the end" do
+      expect(game).to receive(:won?)  
+    end
+
   end
 
 
+  describe "#won?" do
+    it "should check game.stacks for two empty stacks and one stack sorted from largest to smallest" do
+      expect(game.stacks.any?{|stack| stack == [4,3,2,1]}).to be true
+    end
+  
+  end
+
+
+  # check #won? after each move
+#   - 2 empty?, 1 sorted.reverse 
 
 
 
@@ -150,6 +161,5 @@ end
 
 
 
-# check #won? after each move
-#   - 2 empty?, 1 sorted.reverse 
+
 

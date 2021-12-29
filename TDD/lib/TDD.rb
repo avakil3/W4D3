@@ -47,3 +47,44 @@ def stock_picker(arr)
   new_arr
 end
 
+
+class TowersOfHanoi
+  attr_accessor :stack_from, :stack_to, :stacks
+  def initialize(n)
+    @stacks = Array.new(3) {[]}
+    @stacks[0] = (1..n).to_a.shuffle
+    @stack_from = 0
+    @stack_to = 0
+  end
+
+  def get_move
+    puts "Please enter an index [0,1,2] to take a disc from"
+    stack_from = gets.chomp
+    puts "Please enter an index [0,1,2] to place the selected disc to "
+    stack_to = gets.chomp
+  end
+
+  def move_disc
+    disc = stacks[stack_from].pop
+    if disc < stacks[stack_to].last
+      stacks[stack_to].push(disc) 
+    else
+      puts "Invalid move: Disc too big...try again"
+      get_move
+    end
+  end
+
+  def won?
+    game.stacks.any?{|stack| stack == (1..n).to_a.reverse}
+  end
+
+  def play
+    while !won?
+      get_move
+      move_disc
+    end
+    puts "Congrats! You won!"
+  end
+
+end
+
