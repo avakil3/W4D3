@@ -21,6 +21,37 @@ describe '#two_sum' do
     expect(arr.two_sum).to eq(arr.two_sum.sort)
   end
 
+end
+
+describe "#my_transpose" do 
+  rows = [
+    [0, 1, 2],
+    [3, 4, 5],
+    [6, 7, 8]
+  ] 
+
+  it "will convert between the row-oriented and column-oriented representations" do 
+    expect(rows.my_transpose).to eq(rows.transpose)
+  end
   
+  it "will not use built-in method .transpose" do 
+    expect_any_instance_of(Array).not_to receive(:transpose)
+  end
+end
+
+describe "#stock_picker" do 
+  arr = [4,2,1,6,8,50,1]
+  context "takes an array of stock prices (prices on days 0, 1, ...)" do
+    
+    it "should accept ONLY an array as an argument" do
+      expect(arr).to be_an_instance_of(Array)
+    end
+    
+    it "should output the most profitable pair of days on which 
+    to first buy the stock and then sell the stock. "  do
+      expect(stock_picker(arr)).to eq([2,5])
+    end
+
+  end
 
 end
